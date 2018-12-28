@@ -1,6 +1,6 @@
 $(function() {
 
-  var model = {
+  var data = {
 
     bio: {
       name: 'Tom Tommy',
@@ -15,7 +15,24 @@ $(function() {
       welcomeMessage: 'Hiya Peoples',
       skills: ['HTML', 'CSS', 'Making Coffee'],
       biopic: 'www.tom.com',
-      display: function() {}
+      display: function() {
+
+          console.log('bio display');
+          this.$header = $('#header');
+          this.$topContacts = $('#topContacts');
+          var formattedName = HTMLheaderName.replace("%data%", this.name);
+          var formattedRole = HTMLheaderRole.replace("%data%", this.role);
+          var formattedMobile = HTMLmobile.replace("%data%", this.contacts.mobile);
+          var formattedEmail = HTMLemail.replace("%data%", this.contacts.email);
+          var formattedTwitter = HTMLtwitter.replace("%data%", this.contacts.twitter);
+          var formattedGithub = HTMLgithub.replace("%data%", this.contacts.github);
+          var formattedLocation = HTMLlocation.replace("%data%", this.contacts.location);
+          //var formattedBioPic = HTMLbioPic.replace("%data%", this.contacts.location);
+          var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
+
+          this.$header.append(formattedName, formattedRole, formattedWelcomeMsg);
+          this.$topContacts.append(formattedMobile, formattedEmail, formattedTwitter, formattedGithub, formattedLocation);
+      }
     },
 
     education: {
@@ -89,5 +106,20 @@ $(function() {
       display: function() {}
     }
   };
+
+  var octopus = {
+
+  };
+
+  var headerView = {
+     init: function() {
+          var formattedLocation = HTMLheaderName.replace("%data%", model.bio.name);
+          this.$header = $('#header');
+          this.$header.append(formattedLocation);
+      }
+  };
+
+  //headerView.init();
+  data.bio.display();
 
 }());
